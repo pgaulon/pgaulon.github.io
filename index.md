@@ -37,10 +37,11 @@ Now the box is based on the latest Ubuntu LTS, packaged with both Mininet and Mi
 - Virtualbox
 - Vagrant
 - a Vagrantfile containing:
-
-    Vagrant.configure("2") do |config|
-      config.vm.box = "pgaulon/minicps"
-    end
+  ```
+  Vagrant.configure("2") do |config|
+    config.vm.box = "pgaulon/minicps"
+  end
+  ```
 
 can bring up the exact same virtual machine.
 Adding such Vagrantfile at the root of MiniCPS repository allows any developper to be quickly bootstraped with a working developpement environment they can SSH into for their tests without worrying about the installation process, focusing their efforts on building complex CPS.
