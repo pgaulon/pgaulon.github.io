@@ -1,11 +1,11 @@
 # MiniCPS and Vagrant
 
-[MiniCPS](https://github.com/scy-phy/minicps) is a framework written in Python that allows anyone to recreate a Cyber Physical System (CPS).
-The different machines composing the CPS will interact with each other on a virtual network. This network is handled by [Mininet](https://mininet.org/).
+[MiniCPS](https://github.com/scy-phy/minicps) is a framework written in Python that allows to simulate Cyber Physical Systems (CPS) in real-time built on top of Mininet.
+[Mininet](https://mininet.org/) is a lightweight network emulator and MiniCPS uses it to emulate a CPS network.
 
-Having gone through it, the installation process is quite simple. However I usually prefer to install softwares in an enclosed environment, and especially using virtual machines (VM). I think about it as a safety net in case the installation goes wrong. For that effect, Mininet provides a ready to go [image](http://mininet.org/download/#option-1-mininet-vm-installation-easy-recommended). So from there the only step missing is to [install MiniCPS](https://minicps.readthedocs.io/en/latest/userguide.html#install-minicps).
+Having gone through it, the installation process is quite simple. However I usually prefer to install softwares in an isolated environment, and especially using virtual machines (VM). I think about it as a safety net in case the installation goes wrong. For that effect, Mininet provides a ready to go [image](http://mininet.org/download/#option-1-mininet-vm-installation-easy-recommended). So from there the only step missing is to [install MiniCPS](https://minicps.readthedocs.io/en/latest/userguide.html#install-minicps).
 
-Mininet VM is based on Ubuntu 14.04 which officially joined the [old releases section](http://old-releases.ubuntu.com/releases/14.04.0/) and will reach its end of life next April. Also, the process is quite long and requires manual intervention. One need to download the Mininet VM, install it using ones favorite virtualizer, find its IP and install MiniCPS.
+Mininet VM is based on Ubuntu 14.04 which officially joined the [old releases section](http://old-releases.ubuntu.com/releases/14.04.0/) and will reach its end of life next April. Also, the process of installing Mininet is quite long and requires manual intervention: one need to download the Mininet VM, install it using ones favorite virtualizer, find its IP, install MiniCPS and clone its repository to get started.
 
 A better user experience can be achieved using [Vagrant](https://www.vagrantup.com/). From a single file, a virtual machine containing the already installed environment can be brought up using the magic words:
 
@@ -30,7 +30,7 @@ At the end of the procedure we are left with a ```output/minicps.box``` file. Th
     $ vagrant init minicps
     $ vagrant up
 
-That would be troublesome if each developer has to build its own image before using it. The next step is then to host the packaged box on [Vagrant cloud](https://app.vagrantup.com/) so MiniCPS developpers can download it directly as described in a Vagrantfile. So I created an account on Vagrant Cloud, uploaded the ```minicps.box``` [file](https://app.vagrantup.com/pgaulon/boxes/minicps).
+That would be troublesome if each developer has to build its own image before using it. The next step is then to host the packaged box on [Vagrant cloud](https://app.vagrantup.com/) so MiniCPS developers can download it directly as described in a Vagrantfile. So I created an account on Vagrant Cloud, uploaded the ```minicps.box``` [file](https://app.vagrantup.com/pgaulon/boxes/minicps).
 
 Now the box is based on the latest Ubuntu LTS, packaged with both Mininet and MiniCPS and uploaded to Vagrant Cloud, anyone with:
 
@@ -44,7 +44,7 @@ Now the box is based on the latest Ubuntu LTS, packaged with both Mininet and Mi
   ```
 
 can bring up the exact same virtual machine.
-Adding such Vagrantfile at the root of MiniCPS repository allows any developper to be quickly bootstraped with a working developpement environment they can SSH into for their tests without worrying about the installation process, focusing their efforts on building complex CPS.
+Adding such Vagrantfile at the root of MiniCPS repository allows any developer to be quickly bootstraped with a working developement environment they can SSH into for their tests without worrying about the installation process, focusing their efforts on building complex CPS. An example of such CPS could be [a water distribution system](https://itrust.sutd.edu.sg/testbeds/secure-water-treatment-swat/), a power grid or a nuclear power plant.
 
     $ git clone https://github.com/scy-phy/minicps
     $ cd minicps
