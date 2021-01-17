@@ -13,4 +13,4 @@ Pentester as hobby
 
 # Blog
 
- - 2018-10-22 [MiniCPS and Vagrant](./minicps-vagrant.md)
+ - 2018-10-22 [MiniCPS and Vagrant](./2018-10-22-minicps-vagrant.md)
