@@ -6,7 +6,7 @@ I had the occasion to be exposed to [Chinese cryptography standards](https://en.
 - [SM3](https://datatracker.ietf.org/doc/html/draft-oscca-cfrg-sm3-02) is a hashing algorithm
 - [SM4](https://datatracker.ietf.org/doc/html/draft-ribose-cfrg-sm4-10) is a set of encryption/decryption block-cipher algorithms
 
-This article aims to guide any further usage of such cryptography standards. It a bit long to cover everything: jump directly to the part you are interested in.
+This article aims to guide any further usage of such cryptography standards. It is a bit long to cover everything: jump directly to the part you are interested in.
 
 * TOC
 {:toc}
@@ -29,7 +29,7 @@ ECC delivers the same protection as [RSA](https://en.wikipedia.org/wiki/RSA_(cry
 
 ## Theory summary
 
-Following the very well explained guide from [Hans Knutson on Hacker Noon](https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3) and [CryptoBook from Svetlin Nakov](https://cryptobook.nakov.com/asymmetric-key-ciphers/elliptic-curve-cryptography-ecc), this section aims to provide a sense of different parameters which will be found in SM2 libraries, and what they correspond to.
+Following the very well explained guides from [Hans Knutson on Hacker Noon](https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3) and [CryptoBook from Svetlin Nakov](https://cryptobook.nakov.com/asymmetric-key-ciphers/elliptic-curve-cryptography-ecc), this section aims to provide a sense of different parameters which will be found in SM2 libraries, and what they correspond to.
 
 ### Key generation
 As a comparison, RSA is based on [prime number](https://en.wikipedia.org/wiki/Prime_number) [factorization](https://en.wikipedia.org/wiki/Integer_factorization) and its private key is composed of 2 long prime numbers (called `p` and `q`). The modulus `m` is the product `pq=m` which constitutes the public key. The size of `m` in bits is the key size of RSA. From the knowledge of `m`, it is hard to decompose it back into the 2 prime numbers `p` and `q`.
@@ -68,10 +68,10 @@ My goal was to port Java code to Golang: reverse engineering the usage of [CFCA]
 
 From a classic REST API POST, with several parameters, few additional security operations are taking place:
 
-1 - the original parameters are concatenated in alphabetical order, then concatenated to an API key, and hashed using SM3. The resulting hash is later added as an additional POST parameter
-2 - the original parameters are concatenated in alphabetical order and signed using SM2. That signature using a [PKCS7](https://en.wikipedia.org/wiki/PKCS_7)-like format is attached to the request as additional POST parameter
-3 - the response body is encrypted using SM4 with a key derived from the API key
-4 - the response body also contains both an SM3 hash and SM2 signature for verification
+- the original parameters are concatenated in alphabetical order, then concatenated to an API key, and hashed using SM3. The resulting hash is later added as an additional POST parameter
+- the original parameters are concatenated in alphabetical order and signed using SM2. That signature using a [PKCS7](https://en.wikipedia.org/wiki/PKCS_7)-like format is attached to the request as additional POST parameter
+- the response body is encrypted using SM4 with a key derived from the API key
+- the response body also contains both an SM3 hash and SM2 signature for verification
 
 The second step was the most interesting as the Golang library was not implementing the PKCS7 formatting of the signature: only American standards were supported.
 
@@ -235,13 +235,16 @@ Disclaimer time. The resulting code is very specific and by no mean perfect nor 
 To debug Java, it is better to have a clean environment to start with:
 
 - a [Vagrant](https://www.vagrantup.com/) config, to run a VM with `vagrant up`
+
 ```
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
   config.vm.synced_folder ".", "/vagrant_data"
 end
 ```
+
 - a java class with the high-level code to inspect
+
 ```
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -260,13 +263,16 @@ class HelloWorld {
         }
     }
 ```
+
 - a compilation script to compile any change from the code
+
 ```
 #!/bin/sh
 
 javac -Xlint:deprecation -cp "JAR/*" HelloWorld.java
 java -cp "JAR/*:." HelloWorld
 ```
+
 - all the .jar to run the code
 - [decompiled](https://github.com/java-decompiler/jd-gui) .java sources from the .jar files (only the one to inspect are needed)
 - the `.sm2` file provided
