@@ -37,19 +37,16 @@ As a comparison, RSA is based on [prime number](https://en.wikipedia.org/wiki/Pr
 ECC is based on the [discrete logarithm](https://en.wikipedia.org/wiki/Discrete_logarithm) of [elliptic curve](https://en.wikipedia.org/wiki/Elliptic_curve) elements. An elliptic curve consists of all the points of coordinates `(x,y)` verifying `y² = x³+ax+b`. For instance [Bitcoin](https://en.bitcoin.it/wiki/Secp256k1) uses the curve called secp256k1 which verifies `y² = x³+7`. It is possible to add 2 points of that curve together:
 
 | ![EC addition](./img/2021-10-10-chinese-cryptographic-standards/add-different.png) |
-|:--:|
 | *From [https://iis-projects.ee.ethz.ch/images/d/de/Elliptic_curve_addition.png](https://iis-projects.ee.ethz.ch/images/d/de/Elliptic_curve_addition.png)* |
 
 Or to add a point to itself:
 
 | ![EC addition](./img/2021-10-10-chinese-cryptographic-standards/add-same.png) |
-|:--:|
 | *From [http://www.herongyang.com/EC-Cryptography/Elliptic-Curve-with-Same-Point-Addition.png](http://www.herongyang.com/EC-Cryptography/Elliptic-Curve-with-Same-Point-Addition.png)* |
 
 Moreover to make sure that points stay within reasonable coordinates, the curve `y² = x³+ax+b` is wrapped around itself using a modulus `p`: `y² mod p = (x³ + ax + b) mod p`
 
 | ![Curve modulo](./img/2021-10-10-chinese-cryptographic-standards/modulo.png) |
-|:--:|
 | *From [https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3](https://hackernoon.com/what-is-the-math-behind-elliptic-curve-cryptography-f61b25253da3)* |
 
 The ECC private key is given by choosing a base point `P` (also called Generator point `G`) on the wrapped curve, and adding itself `x` times (which defines the operation `•` as `x•P = P + ... + P`, `x` times), with `x` a random 256bits integer. The resulting point from `x•P` will be called `X`, and is fast to compute thanks to [exponentiation by squaring](https://en.wikipedia.org/wiki/Exponentiation_by_squaring).
