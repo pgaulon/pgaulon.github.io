@@ -184,8 +184,8 @@ The `ASN.1` structure of the signature will follow:
 - a sequence the x509 certificates corresponding to the private keys used to sign (we can sign with multiple keys)
 - a set of the digital signatures for all the keys/certificates signing. Each signature is a sequence of the corresponding certificate informations (countryName, organizationName, commonName) and finally the 2 integer `r` and `s`, in hexadecimal representation (the last 2 elements in the figure below)
 
-![signature](./img/2021-10-10-chinese-cryptographic-standards/signature.png)
-Screenshot from asn1js
+| ![signature](./img/2021-10-10-chinese-cryptographic-standards/signature.png) |
+| *Screenshot from asn1js* |
 
 To generate such signature, the Golang equivalent is:
 
@@ -318,8 +318,8 @@ Step completed: "thread=main", com.[redacted].commons.cfca.SM2CertUtils.getX509C
 
 The commands `where`, `list`, `step` or `next` can be repeated until the code is understood. Keeping [jd-gui](https://github.com/java-decompiler/jd-gui) open beside it to follow classes is also very helpful.
 
-![jd-gui](./img/2021-10-10-chinese-cryptographic-standards/CFCASign.png)
-Screenshot from jd-gui on the signature method
+| ![jd-gui](./img/2021-10-10-chinese-cryptographic-standards/CFCASign.png) |
+| *Screenshot from jd-gui on the signature method* |
 
 # Key takeaways
 - Chinese standard SM2 uses Elliptic Curve Cryptography
