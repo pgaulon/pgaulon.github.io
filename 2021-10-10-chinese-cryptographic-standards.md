@@ -58,7 +58,7 @@ The signature algorithm for ECC is called [Elliptic Curve Digital Signature Algo
 - `r` is the horizontal coordinate of `k•P`
 - `s` is computed from the hash of the message `m`, `r`, and the private key `x`
 
-An important note is that since there is a random number `k` in the signature, 2 signatures of the same message `m` will not look the same.
+An important note is that since there is a random number `k` in the signature, 2 signatures of the same message `m` will not look the same. This process is called the [Schnorr Identification Protocol](https://github.com/cryptosubtlety/intuitive-advanced-cryptography/blob/master/advancedcrypto.pdf).
 
 # Back to SM2/SM3/SM4
 
