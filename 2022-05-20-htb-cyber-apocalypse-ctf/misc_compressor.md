@@ -8,4 +8,4 @@ This could also be solved with a [zip GTFO command](https://gtfobins.github.io/g
 
 We just need to guess where the `flag.txt` file is. After a couple of tries, `../../flag.txt` does the trick.
 
-![Compressor](./img/misc_compressor)
+![Compressor](./img/misc_compressor.png)
