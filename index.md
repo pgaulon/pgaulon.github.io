@@ -11,6 +11,7 @@ Pentester as hobby
 
 # Blog
 
+ - 2022-07-15 [HTB Business CTF write up](./2022-07-15-htb-business-ctf/index.md)
  - 2022-05-20 [HTB Cyber Apocalypse CTF write up](./2022-05-20-htb-cyber-apocalypse-ctf/index.md)
  - 2021-10-10 [Chinese Cryptographic Standards](./2021-10-10-chinese-cryptographic-standards.md)
  - 2021-05-04 [Getting root on AlienVault USM Anywhere AWS sensor](./2021-05-04-root-alienvault-usm-sensor.md)
