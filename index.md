@@ -2,9 +2,9 @@
 
 Cloud Network, Infrastructure & Security Engineer
 
-Contact: [pierre.gaulon.cyber@gmail.com](mailto:pierre.gaulon.cyber@gmail.com) ([GPG key](./files/public.asc))
-
 Pentester as hobby
+
+Contact: [pierre.gaulon.cyber@gmail.com](mailto:pierre.gaulon.cyber@gmail.com) ([GPG key](./files/public.asc))
 
  - [Linkedin](https://www.linkedin.com/public-profile/in/pierre-gaulon-45b97366/)
  - [Github](https://github.com/pgaulon)
