@@ -15,9 +15,9 @@ $ puttygen test -O public
 
 That public SSH key format contains 4 fields, separated with spaces:
 
-- length in bits of the modulus `m`: key size
+- length in bits of the modulus `n`: key size
 - exponent, using the common value of `65537`
-- modulus `m`
+- modulus `n`
 - comment
 
 This public key cannot be directly added in an `authorized_keys` file of `openssh`. As such `rsa1` keys need to be converted to OpenSSH format. This can be done using Python's PyCryptodome [by reconstructing the RSA key from its components](https://pycryptodome.readthedocs.io/en/latest/src/public_key/rsa.html#Crypto.PublicKey.RSA.construct), then [exporting it to the right format](https://pycryptodome.readthedocs.io/en/latest/src/public_key/rsa.html#Crypto.PublicKey.RSA.RsaKey.exportKey):
