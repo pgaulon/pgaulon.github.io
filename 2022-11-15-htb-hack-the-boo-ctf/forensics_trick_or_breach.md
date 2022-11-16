@@ -2,7 +2,7 @@
 
 We are also presented with a pcap. Again, running it through tcpdump, we find DNS traffic, with hex as subdomains:
 
-```
+```bash
 $ tcpdump -Ann -r capture.pcap
 [...]
 21:47:30.355215 IP 147.182.172.189.53 > 192.168.1.10.56333: 37081* 1/0/0 A 147.182.172.189 (100)
@@ -42,7 +42,7 @@ E..P..@.5..........
 
 Let's filter those hex into a file, and convert the hex into bytes with `xxd`.
 
-```
+```bash
 $ tcpdump -Ann -r capture.pcap | grep 'A?' | cut -d ' ' -f 8 | cut -d '.' -f 1 > bytes.txt
 $ cat bytes.txt | xxd -r -p > file.something
 $ file file.something
@@ -51,7 +51,7 @@ file.something: Microsoft Excel 2007+
 
 We get an Excel file, which is itself just a zip. After extracting the zip, we can inspect its content:
 
-```
+```bash
 $ unzip file.something
 $ strings xl/*
 [...]
