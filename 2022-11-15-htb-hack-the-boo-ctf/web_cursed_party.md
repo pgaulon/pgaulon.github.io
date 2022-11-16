@@ -26,7 +26,7 @@ Stealing this cookie will give us the flag. Since we need to steal a cookie via 
 
 Indeed the admin page displaying the requests is vulnerable to XSS
 
-```html
+```
     <body>
         <div class="container" style="margin-top: 20px">
             {% for request in requests %}
