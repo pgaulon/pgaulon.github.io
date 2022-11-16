@@ -39,8 +39,8 @@ Congratulations, here is the code to get your laser:
 
 Using Ghidra to decompile it, we find the logic computing the remaining `pumpcoins`. The `local_54` variable (item selection) is not checked, and added to the computation: it can be less than 0. That looks like an underflow.
 
-[Underflow](./img/pwn_pumpkin_stand_1.png)
+![Underflow](./img/pwn_pumpkin_stand_1.png)
 
 Let's use `-1` as the item ID
 
-[Flag](./img/pwn_pumpkin_stand_2.png)
+![Flag](./img/pwn_pumpkin_stand_2.png)
