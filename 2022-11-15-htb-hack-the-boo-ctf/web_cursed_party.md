@@ -26,7 +26,8 @@ Stealing this cookie will give us the flag. Since we need to steal a cookie via 
 
 Indeed the admin page displaying the requests is vulnerable to XSS
 
-```
+{% raw %}
+```html
     <body>
         <div class="container" style="margin-top: 20px">
             {% for request in requests %}
@@ -40,6 +41,7 @@ Indeed the admin page displaying the requests is vulnerable to XSS
                     <button class="btn btn-primary">Accept</button>
                     <button class="btn btn-danger">Delete</button>
 ```
+{% endraw %}
 
 However we do have one more thing to overcome. This site uses a [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) header restricting from where Javascript can be loaded into the victim's browser.
 
