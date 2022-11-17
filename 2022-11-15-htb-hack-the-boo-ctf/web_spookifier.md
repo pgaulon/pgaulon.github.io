@@ -1,6 +1,6 @@
 # [Web] Spookifier
 
-This web application that uses a templates to change the font of an input text. As a template is used, this calls for SSTI.
+This web application uses a template to change the font of an input text. As a template is used, this calls for [SSTI](https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection).
 We do have access to the code and the template engine used is Mako, via `flask_mako`.
 
 ```python

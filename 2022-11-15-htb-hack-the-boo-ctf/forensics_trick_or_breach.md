@@ -1,6 +1,6 @@
 # [Forensics] Trick or breach
 
-We are also presented with a pcap. Again, running it through tcpdump, we find DNS traffic, with hex as subdomains:
+We are also presented with a pcap. Again, running it through tcpdump, we find DNS traffic, with hexadecimal as subdomains:
 
 ```bash
 $ tcpdump -Ann -r capture.pcap
@@ -40,7 +40,7 @@ E..P..@.5..........
 .5...<.626...........00.pumpkincorp.com..............,......
 ```
 
-Let's filter those hex into a file, and convert the hex into bytes with `xxd`.
+Let's filter those hex into a file and convert the hex into bytes with `xxd`.
 
 ```bash
 $ tcpdump -Ann -r capture.pcap | grep 'A?' | cut -d ' ' -f 8 | cut -d '.' -f 1 > bytes.txt
@@ -49,7 +49,7 @@ $ file file.something
 file.something: Microsoft Excel 2007+
 ```
 
-We get an Excel file, which is itself just a zip. After extracting the zip, we can inspect its content:
+We get an Excel file, which is just a zip. After extracting the zip, we can inspect its content:
 
 ```bash
 $ unzip file.something

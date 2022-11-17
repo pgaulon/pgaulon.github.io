@@ -1,6 +1,6 @@
 # [Forensics] Wrong spooking season
 
-We are given a pcap file to inspect. Running it through tcpdump, we can observe commands being executed, and their output at the end of the trace:
+We are given a pcap file to inspect. Running it through `tcpdump`, we can observe commands being executed and their output at the end of the trace:
 
 ```bash
 $ tcpdump -r capture.pcap -A

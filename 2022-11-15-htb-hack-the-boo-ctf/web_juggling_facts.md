@@ -37,7 +37,7 @@ Once this round of validation is done, the json is passed in a `switch`, for it 
                 ]);
 ```
 
-The problem is that `switch` is vulnerable to type juggling (hence the name of the challenge). Setting `type` to `true`, we can pass the validation, and still end up in the first branch of the `switch`
+The problem is that `switch` is vulnerable to [type juggling](https://www.php.net/manual/en/language.types.type-juggling.php) (hence the name of the challenge). Setting `type` to `true`, we can pass the validation, and still end up in the first branch of the `switch`
 
 ```bash
 $ curl -vd '{"type":true}' 178.62.85.130:32116/api/getfacts

@@ -1,6 +1,6 @@
 # [Reverse] Ghost Wrangler
 
-Again, a binary is provided. Running `strings` against it reveals an magled string.
+Again, a binary is provided. Running `strings` against it reveals a mangled string.
 
 ```bash
 $ strings ghost

@@ -1,6 +1,6 @@
 # Converting RSA1 SSH public keys
 
-`SSH-1`, or `rsa1` is an older format of SSH keys. It can for instance be obtained with older versions of `ssh-keygen -t rsa1`, or with [PuTTY](https://www.putty.org/), and will look like the following:
+`SSH-1`, or `rsa1` is an older format of SSH keys. It can, for instance, be obtained with older versions of `ssh-keygen -t rsa1`, or with [PuTTY](https://www.putty.org/), and will look like the following:
 
 ```bash
 $ puttygen -t rsa1 -o test
@@ -20,7 +20,7 @@ That public SSH key format contains 4 fields, separated with spaces:
 - modulus `n`
 - comment
 
-This public key cannot be directly added in an `authorized_keys` file of `openssh`. As such `rsa1` keys need to be converted to OpenSSH format. This can be done using Python's PyCryptodome [by reconstructing the RSA key from its components](https://pycryptodome.readthedocs.io/en/latest/src/public_key/rsa.html#Crypto.PublicKey.RSA.construct), then [exporting it to the right format](https://pycryptodome.readthedocs.io/en/latest/src/public_key/rsa.html#Crypto.PublicKey.RSA.RsaKey.exportKey):
+This public key cannot be directly added in an `authorized_keys` file of `openssh`. Because of that, `rsa1` keys need to be converted to OpenSSH format. This can be done using Python's PyCryptodome [by reconstructing the RSA key from its components](https://pycryptodome.readthedocs.io/en/latest/src/public_key/rsa.html#Crypto.PublicKey.RSA.construct), then [exporting it to the right format](https://pycryptodome.readthedocs.io/en/latest/src/public_key/rsa.html#Crypto.PublicKey.RSA.RsaKey.exportKey):
 
 ```python
 from Crypto.PublicKey.RSA import construct
