@@ -33,7 +33,7 @@ if __name__ == "__main__":
   main()
 ```
 
-However there is a key difference: instead of using `g^y` as part of the encrypted value (`c1`), here `g*y` is used. Since we can easily calculate the inverse of `g`, we can recover `y`. From there, we compute the inverse of `s^y`, which is `s^-y`. Finally we multiply `c2` by that value to retrieve the message `m`.
+However there is a key difference: instead of using `g^y` as part of the encrypted value (`c1`), here `g*y` is used. Since we can easily calculate the inverse of `g`, we can recover `y`. From there, we compute the inverse of `s=h^y`, which is `invs=h^-y`. Finally we multiply `c2` by that value to retrieve the message `m`.
 
 ```python
 from Crypto.Util.number import bytes_to_long, long_to_bytes, inverse
