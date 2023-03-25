@@ -1,10 +1,10 @@
 # [Web - medium] Spybug
 
-This webapp consists in an API written in JS, allowing agents (an agent is a tuple (hostname,platform,arch)) to register themselves, and upload WAV sounds to the `/uploads` folder. There is also a bot loggin in as admin every minute and checking the main dashboard which displays agent information.
+This webapp is an API written in JS, allowing agents (an agent is a tuple (hostname,platform,arch)) to register themselves, and upload WAV sounds to the `/uploads` folder. There is also a bot loggin in as admin every minute and checking the main dashboard which displays agent information.
 
 The admin username contains the flag and is displayed in the dashboard as welcome message.
 
-This challenge consists in exploiting 2 vulnerabilities:
+This challenge is about exploiting 2 vulnerabilities:
 
 - the agent information is displayed as-is in the dashboard: it is vulnerable to XSS, which will be triggered by the admin bot every minute. However the webapp is using CSP (Content Security Policy) with `script-src 'self'`: the XSS must only include local file scripts. That's where the second vulnerability will be useful
 ```

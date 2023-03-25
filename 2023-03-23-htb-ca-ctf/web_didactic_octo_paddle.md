@@ -40,7 +40,7 @@ const AdminMiddleware = async (req, res, next) => {
         }
 ```
 
-Once logged in as admin, the user page renders the user names with `jsrender`:
+Once logged in as admin, the user page will be rendered with the user names using `jsrender`:
 
 ```js
   router.get("/admin", AdminMiddleware, async (req, res) => {

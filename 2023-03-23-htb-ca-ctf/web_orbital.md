@@ -1,6 +1,6 @@
 # [Web - easy] Orbital
 
-The webapp given is written in Python with a MySQL database, and allows an authenticated user to export files from a `communications` directory.
+This webapp given is written in Python with a MySQL database, and allows an authenticated user to export files from a `communications` directory.
 
 There are 2 vulnerabilities to exploit, which are highlighted by comments in the code provided:
 

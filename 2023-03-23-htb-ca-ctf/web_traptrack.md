@@ -14,7 +14,7 @@ def run_worker():
     trapURL = job['trap_url']
     response = request(trapURL)
 ```
-- the Jobs are stored in Redis serialized, then deserialized with `pickle.loads`. Creating a specially crafter `pickle` job will lead to an RCE
+- the Jobs are stored in Redis serialized, then deserialized with `pickle.loads`. Creating a specially crafted `pickle` job will lead to a RCE
 ```python
 def get_work_item():
     job_id = store.rpop(env('REDIS_QUEUE'))
