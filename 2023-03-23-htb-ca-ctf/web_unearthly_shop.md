@@ -4,12 +4,13 @@ Disclaimer: this challenge was not fully solved. The last part we needed was to 
 
 This webapp is written in PHP and uses a MongoDB database. It has 2 components:
 
-- a frontend, that displays items in a store, and on which users can send bids
+- a frontend, that displays items in a store, and on which users can place bids
 - a backend, through which an admin can login in order to view a Dashboard, and manage the Products, the Orders, and the Users
 
 This webapp contains 2 vulnerabilities:
 
-- listing the products is the as-is MongoDB query: it can be used with a NoSQL injection to list the products and the users, which will give the admin password (passwords are stored in clear, not using bcrypt for instance)
+- listing the products is the as-is MongoDB query: it can be used with a NoSQL injection to list the products and the users, which will give the admin password (passwords are stored in clear, not using `bcrypt` for instance)
+
 ```php
     public function products($router)
     {
@@ -21,7 +22,9 @@ This webapp contains 2 vulnerabilities:
         }
         $products = $this->product->getProducts($query);
 ```
+
 - using the admin interface, the password change function can accept more than the password change: it can be used to modify other attributes of the user, such as the Access
+
 ```php
     public function update($router)
     {
@@ -36,7 +39,9 @@ This webapp contains 2 vulnerabilities:
         }
 
 ```
+
 - the Access of an user is a serialized PHP object. It is deserialized upon instanciation of a Controller, taking values from the user Session
+
 ```php
 class UserModel extends Model
 {
@@ -65,7 +70,7 @@ Thus the path to the flag is to:
 
 - use the NoSQLi in the product listing to get the admin password
 - login as the admin
-- craft a serialized PHP object that will contain an RCE, exfiltrating the flag from the filesystem. In PHP the serialization needs to use a class that is present for instanciation. This application having 2 parts (frontend + backend), and since we are invoking it from the backend, we need to rely on [this trick](https://www.ambionics.io/blog/vbulletin-unserializable-but-unreachable) to `autoload` the corresponding class. The frontend includes a vulnerable `monolog` library, exploitable from a classic [phpggc](https://github.com/ambionics/phpggc) gadget
+- craft a serialized PHP object that will contain an RCE, exfiltrating the flag from the filesystem. In PHP the serialization needs to use a class that is present for instanciation. This application having 2 parts (frontend + backend), and since we are invoking it from the backend, we need to rely on [this trick](https://www.ambionics.io/blog/vbulletin-unserializable-but-unreachable) to `autoload` the corresponding class (this is what we were missing). The frontend includes a vulnerable `monolog` library, exploitable from a classic [phpggc](https://github.com/ambionics/phpggc) gadget
 - use that serialized object, and abuse the update password function to update the admin Access
 - login and display the admin user info to instanciate the Controller, which will deserialize our payload, leading to an RCE
 
