@@ -1,4 +1,7 @@
 # [Pwn - easy] Labyrinth
+
+In collaboration with [Pierre Vigier](https://pierre-vigier.github.io/)
+
 A 64-bit binary file is given, and the equivalent made available via TCP.
 
 ```bash
