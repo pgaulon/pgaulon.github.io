@@ -20,7 +20,9 @@ At the adress `0x00401255` there's an `escape_plan` function that will read the 
 
 ![escape_plan](./img/pwn_labyrinth_2.png)
 
-The aim is thus to reach `fgets` by inputing `069`, then overflow `local_38` in order to control the `RIP` Instruction Pointer. The value to set in `RIP` will be an address in the `escape_plan` function, around the address `0x00401255`. Since the binary is a 64-bits `LSB` (Little Endian, Least Significant Byte), addresses will need to be reversed a be on 8 octets: for instance here `\x55\x12\x40\x00\x00\x00\x00\x00`.
+The aim is thus to reach `fgets` by inputing `069`, then overflow `local_38` in order to control the `RIP` Instruction Pointer. The value to set in `RIP` will be an address in the `escape_plan` 
+function, around the address `0x00401255`. Since the binary is a 64-bits `LSB` (Little Endian, Least Significant Byte), addresses will need to be reversed and be on 8 octets: for instance here 
+`\x55\x12\x40\x00\x00\x00\x00\x00`.
 
 Giving it a try with [gdb-peda](https://github.com/longld/peda), with a pattern of length `68` (the `0x44` in `fgets`), gives us the info that `RBP` is overriden at an offset of 48.
 
