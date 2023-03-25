@@ -27,7 +27,7 @@ The aim is thus to reach `fgets` by inputing `069`, then overflow `local_38` in 
 function, around the address `0x00401255`. Since the binary is a 64-bits `LSB` (Little Endian, Least Significant Byte), addresses will need to be reversed and be on 8 octets: for instance here 
 `\x55\x12\x40\x00\x00\x00\x00\x00`.
 
-Giving it a try with [gdb-peda](https://github.com/longld/peda), with a pattern of length `68` (the `0x44` in `fgets`), gives us the info that `RBP` is overriden at an offset of 48.
+Giving it a try with [gdb-peda](https://github.com/longld/peda), with a pattern of length `68` (the `0x44` in `fgets`), provides us the info that `RBP` is overriden at an offset of 48.
 
 ```bash
 ┌──(vagrant㉿kali)-[~]
