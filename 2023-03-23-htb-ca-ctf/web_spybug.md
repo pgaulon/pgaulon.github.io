@@ -7,11 +7,46 @@ The admin username contains the flag and is displayed in the dashboard as welcom
 This challenge consists in exploiting 2 vulnerabilities:
 
 - the agent information is displayed as-is in the dashboard: it is vulnerable to XSS, which will be triggered by the admin bot every minute. However the webapp is using CSP (Content Security Policy) with `script-src 'self'`: the XSS must only include local file scripts. That's where the second vulnerability will be useful
+```
+				tbody
+					each agent in agents
+						tr
+							td= agent.identifier
+							td !{agent.hostname}
+							td !{agent.platform}
+							td !{agent.arch}
+```
+```js
+application.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "script-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'none';");
+```
 - the uploaded WAV sounds in `/uploads` can be anything, as long as:
   - the uploaded file contains (anywhere in the file) the WAV magic bytes
   - the content type is `audio/wave`
   - the filename ends with `.wav`
-
+```js
+const multerUpload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    if (
+      file.mimetype === "audio/wave" &&
+      path.extname(file.originalname) === ".wav"
+[...]
+router.post(
+  "/agents/upload/:identifier/:token",
+  authAgent,
+  multerUpload.single("recording"),
+  async (req, res) => {
+    if (!req.file) return res.sendStatus(409);
+    const filepath = path.join("./uploads/", req.file.filename);
+    const buffer = fs.readFileSync(filepath).toString("hex");
+    if (!buffer.match(/52494646[a-z0-9]{8}57415645/g)) {
+        fs.unlinkSync(filepath);
+      return res.sendStatus(400);
+    }
+    await createRecording(req.params.identifier, req.file.filename);
+    res.send(req.file.filename);
+```
 The path to victory is to:
 
 - register a new agent, get its `uuid`
@@ -20,6 +55,7 @@ The path to victory is to:
 - use a HTTP listener to get the exfiltrated page content
 
 The final script is:
+
 ```python
 import requests
 import json
