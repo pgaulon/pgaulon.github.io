@@ -1,6 +1,5 @@
 # HTB Cyber Apocalypse 2023 CTF
 
-- [Web - easy] [Drobots](./web_drobots.md)
 - [Web - easy] [Orbital](./web_orbital.md)
 - [Web - easy] [Passman](./web_passman.md)
 - [Web - medium] [Didactic Octo Paddle](./web_didactic_octo_paddle.md)
