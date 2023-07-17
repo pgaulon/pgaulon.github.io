@@ -92,7 +92,7 @@ print(flag)
 
 Which gives
 
-```python
+```bash
 $ python reverse.py
 b'HTB{unpr0t3cted_bl0ckch41n_s3cur1ty_p4r4m3t3rs!!!}\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\\`a{(a'
 ```
