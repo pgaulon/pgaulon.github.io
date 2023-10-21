@@ -417,4 +417,12 @@ $ sqlcmd -N -C -S tcp:replica.example.com,1433 -U sa -d master -Q "SELECT CERTEN
 # importing the DER format to a new SQL Certificate via BINARY
 $ export cert_bin=$(xxd -p < test.cer | tr -d "\n")
 $ sqlcmd -N -C -S tcp:main.example.com,1433 -U sa -d master -Q "CREATE CERTIFICATE Test_cert AUTHORIZATION Test_User FROM BINARY = 0x$cert_bin;"
+
+# same process can be done with a certificate and its private key, to restore an encrypted backup for instance
+$ export cert_bin=$(xxd -p < encryption_cert.der | tr -d "\n")
+$ export key_bin=$(xxd -p < encryption_cert_private_key.der | tr -d "\n")
+$ cat pass.sh
+export pass='privatekeypasswordhere'
+$ source pass.sh
+$ sqlcmd -N -C -S tcp:main.example.com,1433 -U sa -d master -Q "create certificate encryption_certificate FROM BINARY = 0x$cert_bin with private key ( binary = 0x$key_bin , decryption by password = '$pass' )"
 ```
