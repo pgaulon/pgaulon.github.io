@@ -1,6 +1,6 @@
 # MiniCPS and Vagrant - 2018-10-22
 
-[MiniCPS](https://github.com/scy-phy/minicps) ([https://arxiv.org/pdf/1507.04860.pdf](paper)) is a framework written in Python that allows to simulate Cyber Physical Systems (CPS) in real-time built on top of Mininet.
+[MiniCPS](https://github.com/scy-phy/minicps) ([paper](https://arxiv.org/pdf/1507.04860.pdf)) is a framework written in Python that allows to simulate Cyber Physical Systems (CPS) in real-time built on top of Mininet.
 [Mininet](https://mininet.org/) is a lightweight network emulator and MiniCPS uses it to emulate a CPS network.
 
 Having gone through it, the installation process is quite simple. However I usually prefer to install softwares in an isolated environment, and especially using virtual machines (VM). I think about it as a safety net in case the installation goes wrong. For that effect, Mininet provides a ready to go [image](http://mininet.org/download/#option-1-mininet-vm-installation-easy-recommended). So from there the only step missing is to [install MiniCPS](https://minicps.readthedocs.io/en/latest/userguide.html#install-minicps).
