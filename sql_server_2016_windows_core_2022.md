@@ -375,6 +375,18 @@ Once the setup is validated, you will want to use a paid license. This is done e
 > Setup.exe /q /ACTION=EditionUpgrade /INSTANCENAME=MSSQLSERVER /PID=value /IACCEPTSQLSERVERLICENSETERMS /SkipRules=Engine_SqlEngineHealthCheck
 ```
 
+To check how much longer you have your evaluation for
+
+```TSQL
+1> SELECT create_date AS 'SQL Server Install Date', DATEADD(DD, 180, create_date) AS 'SQL Server Expiration Date' FROM sys.server_principals WHERE name = 'NT AUTHORITY\SYSTEM'
+2> go
+SQL Server Install Date SQL Server Expiration Date
+----------------------- --------------------------
+2023-08-27 03:21:50.020    2024-02-23 03:21:50.020
+
+(1 rows affected)
+```
+
 ## Check if TLS is in use, and its allowed versions
 
 ```shell
