@@ -372,7 +372,7 @@ If you ever get locked out of SQL Server, you can configure it to run in Single 
 Once the setup is validated, you will want to use a paid license. This is done either by using the Product ID (`/PID=value`) during the installation, or add it post install:
 
 ```cmd
-> Setup.exe /q /ACTION=EditionUpgrade /INSTANCENAME=MSSQLSERVER /PID=value /IACCEPTSQLSERVERLICENSETERMS
+> Setup.exe /q /ACTION=EditionUpgrade /INSTANCENAME=MSSQLSERVER /PID=value /IACCEPTSQLSERVERLICENSETERMS /SkipRules=Engine_SqlEngineHealthCheck
 ```
 
 ## Check if TLS is in use, and its allowed versions
