@@ -1,6 +1,6 @@
 # Notes on SQL Server 2016 SP3 installation on Windows 2022 Server Core
 
-The aim is to replicate SQL Server 2016 SP3 from an on premise database to AWS. Since RHEL support for SQL Server is [only available from 2017](https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-red-hat?view=sql-server-linux-2017&tabs=rhel8), Windows Server was the go to choice. To reduce attack surface by limiting the number of components, Core was chosen: all the installation and configuration will be done through the CLI. Finally version 2022 was used to limit the number of upgrades down the road.
+The aim is to replicate SQL Server 2016 SP3 from an on premise database to AWS. Since RHEL support for SQL Server is [only available from 2017](https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-red-hat?view=sql-server-linux-2017&tabs=rhel8), Windows Server was the go to choice. To reduce attack surface by limiting the number of components, Core was chosen: all the installation and configuration will be done through the CLI. Finally [version 2022](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-ami-version-history.html) was used to limit the number of upgrades down the road.
 
 To configure the server and not have to use RDP, manage users and their credentials, and a VPN/Bastion, [AWS SSM](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-ssm-win.html) is chosen.
 
