@@ -387,6 +387,35 @@ SQL Server Install Date SQL Server Expiration Date
 (1 rows affected)
 ```
 
+## Check if TCP is enabled and if dynamic/static port is used
+
+To enable [static](https://learn.microsoft.com/en-us/troubleshoot/sql/database-engine/connect/static-or-dynamic-port-config#option-2-use-powershell) port, use the property `TcpPort`.
+
+```powershell
+PS C:\Windows\system32> Get-ItemProperty  -Path "HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL13.*\MSSQLServer\SuperSocketNetLib\Tcp" | Select-Object -
+Property Enabled, KeepAlive, ListenOnAllIps,@{label='ServerInstance';expression={$_.PSPath.Substring(74)}} |Format-Table -AutoSize
+
+Enabled KeepAlive ListenOnAllIPs ServerInstance
+------- --------- -------------- --------------
+      1     30000              1 Microsoft SQL Server\MSSQL13.MSSQLServer\MSSQLServer\SuperSocketNetLib\Tcp
+
+PS C:\Windows\system32> Get-ItemProperty  -Path "HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL13.*\MSSQLServer\SuperSocketNetLib\Tcp\IP*\" | Select-Obj
+ect -Property TcpDynamicPorts,TcpPort,DisplayName, @{label='ServerInstance_and_IP';expression={$_.PSPath.Substring(74)}}, IpAddress |Format-Table -AutoSize
+
+TcpDynamicPorts TcpPort DisplayName         ServerInstance_and_IP                                                                IpAddress
+--------------- ------- -----------         ---------------------                                                                ---------
+0                       Specific IP Address Microsoft SQL Server\MSSQL13.MSSQLServer\MSSQLServer\SuperSocketNetLib\Tcp\IP1   fe80::e51c:8701:b5d1:65f8%9
+0                       Specific IP Address Microsoft SQL Server\MSSQL13.MSSQLServer\MSSQLServer\SuperSocketNetLib\Tcp\IP2   10.34.3.55
+0                       Specific IP Address Microsoft SQL Server\MSSQL13.MSSQLServer\MSSQLServer\SuperSocketNetLib\Tcp\IP3   10.34.3.253
+0                       Specific IP Address Microsoft SQL Server\MSSQL13.MSSQLServer\MSSQLServer\SuperSocketNetLib\Tcp\IP4   10.34.3.254
+0                       Specific IP Address Microsoft SQL Server\MSSQL13.MSSQLServer\MSSQLServer\SuperSocketNetLib\Tcp\IP5   fe80::c754:6e30:d750:b6e0%6
+0                       Specific IP Address Microsoft SQL Server\MSSQL13.MSSQLServer\MSSQLServer\SuperSocketNetLib\Tcp\IP6   169.254.1.152
+0                       Specific IP Address Microsoft SQL Server\MSSQL13.MSSQLServer\MSSQLServer\SuperSocketNetLib\Tcp\IP7   169.254.192.110
+0                       Specific IP Address Microsoft SQL Server\MSSQL13.MSSQLServer\MSSQLServer\SuperSocketNetLib\Tcp\IP8   ::1
+0                       Specific IP Address Microsoft SQL Server\MSSQL13.MSSQLServer\MSSQLServer\SuperSocketNetLib\Tcp\IP9   127.0.0.1
+57064                   Any IP Address      Microsoft SQL Server\MSSQL13.MSSQLServer\MSSQLServer\SuperSocketNetLib\Tcp\IPAll
+```
+
 ## Check if TLS is in use, and its allowed versions
 
 ```shell
