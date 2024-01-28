@@ -27,7 +27,7 @@ The next step is to prepare the computer to be able to talk with the phone Fastb
     - Disable DSE at boot: settings, update/security, recovery, advanced startup. Troubleshoot > Advanced options > Startup Settings and click the Restart. Choose option 7
 
 ## Disabling AVB
-The phone  Android Verified Boot or dm-verity also needs to be disabled to install custom images. For that the `vbmeta.img` file is needed and will be used later.
+The phone [Android Verified Boot or dm-verity](https://source.android.com/docs/security/features/verifiedboot/dm-verity) also needs to be disabled to install custom images. For that the `vbmeta.img` file is needed and will be used later.
 
   - download [stock rom](https://cdn-ota.azureedge.net/V12.5.8.0.RGGMIXM/miui_BEGONIAGlobal_V12.5.8.0.RGGMIXM_db66dbc998_11.0.zip)
   - unzip, get `vbmeta.img`
