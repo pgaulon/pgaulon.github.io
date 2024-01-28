@@ -5,6 +5,9 @@ This pages aims to summarize the notes taken during the process.
 
 The initial MIUI ROM was at version 12.5.8.RGGMIXM.
 
+## Downlod platform-tools
+The main tool to interact with [ADB](https://en.wikipedia.org/wiki/Android_Debug_Bridge) and [Fastboot](https://en.wikipedia.org/wiki/Fastboot) is platform-tools. It consists in a [zip file](https://developer.android.com/tools/releases/platform-tools) that can be downloaded and extracted anywhere and contains the binaries `adb.exe` and `fastboot.exe`
+
 ## Unlock OEM
 To prevent accidental operations, MIUI locks the bootloader. An official software is provided [here](https://en.miui.com/unlock/download_en.html). However it requires an account creation.
 Unlocking the bootloader is also possible through a different way, using USB Driver Development kit (UsbDk) and MTK Client.
@@ -27,7 +30,7 @@ The next step is to prepare the computer to be able to talk with the phone Fastb
 The phone  Android Verified Boot or dm-verity also needs to be disabled to install custom images. For that the `vbmeta.img` file is needed and will be used later.
 
   - download [stock rom](https://cdn-ota.azureedge.net/V12.5.8.0.RGGMIXM/miui_BEGONIAGlobal_V12.5.8.0.RGGMIXM_db66dbc998_11.0.zip)
-  - unzip, get vbmeta.img
+  - unzip, get `vbmeta.img`
 
 ## Install TWRP recovery
 The next step is to override the official recovery software with a custom one, namely [Team Win Recovery Project](https://twrp.me/)
