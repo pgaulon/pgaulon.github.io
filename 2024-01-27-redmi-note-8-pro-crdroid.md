@@ -21,7 +21,7 @@ Unlocking the bootloader is also possible through a different way, using USB Dri
 ## Install Fastboot driver on computer
 The next step is to prepare the computer to be able to talk with the phone Fastboot using the appropriate drivers.
 
-  - download the [official driver](http://bigota.d.miui.com/tools/xiaomi_usb_driver.rar)
+  - download the [official driver](http://bigota.d.miui.com/tools/xiaomi_usb_driver.rar) (for other brands, list [here](https://developer.android.com/studio/run/oem-usb))
   - however the driver is not signed, so Driver Signature Enforcement (DSE) needs to be disabled via either:
     - Test Mode: admin powershell, then `bcdedit /set TESTSIGNING ON`, then restart. You will be in test mode. To disable `bcdedit /set TESTSIGNING OFF`
     - Disable DSE at boot: settings, update/security, recovery, advanced startup. Troubleshoot > Advanced options > Startup Settings and click the Restart. Choose option 7
@@ -47,7 +47,7 @@ Before installing a custom ROM, MIUI needs to be cleaned up, and the partition f
   - from TWRP recovery: wipe -> system, vendor, cache, dalvik, data
   - from TWRP recovery: wipe -> format
   - Download crDroid [latest version for this phone model](https://onboardcloud.dl.sourceforge.net/project/crdroid/begonia/10.x/crDroidAndroid-14.0-20240112-begonia-v10.1.zip)
-  - Upload it to the cleaned partition `adb push cdroid.zip /sdcard/`
+  - Upload it to the cleaned partition `.\adb.exe push cdroid.zip /sdcard/`
   - From TWRP: install that uploaded zip
 
 ## Install Nikgapps for Google Play
@@ -56,6 +56,6 @@ crDroid doesn't come with Google applications by default. It can be added later 
   - Go to [NikGApps](https://nikgapps.com/downloads), and chose the appropriate package (e.g. Android 14 is U, then from Release chose the [one you prefer](https://onboardcloud.dl.sourceforge.net/project/nikgapps/Config-Releases/NikGapps-U/13-Jan-2024/NikGapps-Ccrlll-arm64-14-20240113.zip))
   - Boot to recovery, for instance from crDroid menu
   - Use TWRP to wipe and format data. This removes encryption and allows to upload NikGApps zip file
-  - Upload the zip file `adb push nikgapps.zip sdcard`
+  - Upload the zip file `.\adb.exe push nikgapps.zip sdcard`
   - Use TWRP to install the .zip uploaded
   - reboot to system
