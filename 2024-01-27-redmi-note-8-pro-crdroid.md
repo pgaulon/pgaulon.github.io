@@ -5,7 +5,7 @@ This pages aims to summarize the notes taken during the process.
 
 The initial MIUI ROM was at version 12.5.8.RGGMIXM.
 
-## Downlod platform-tools
+## Download platform-tools
 The main tool to interact with [ADB](https://en.wikipedia.org/wiki/Android_Debug_Bridge) and [Fastboot](https://en.wikipedia.org/wiki/Fastboot) is platform-tools. It consists in a [zip file](https://developer.android.com/tools/releases/platform-tools) that can be downloaded and extracted anywhere and contains the binaries `adb.exe` and `fastboot.exe`
 
 ## Unlock OEM
