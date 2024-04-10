@@ -13,6 +13,7 @@ Contact: [pierre.gaulon.cyber@gmail.com](mailto:pierre.gaulon.cyber@gmail.com) (
 
 # Blog
 
+ - 2024-03-14 [HTB Cyber Apocalypse CTF write up](./2024-03-14-htb-ca-ctf/index.md)
  - 2024-01-27 [Notes on crDroid installation for Redmi Note 8 Pro](./2024-01-27-redmi-note-8-pro-crdroid.md)
  - 2023-09-23 [Notes on SQL Server 2016 SP3 installation on Windows 2022 Server Core](./sql_server_2016_windows_core_2022.md)
  - 2023-07-15 [HTB Business CTF write up](./2023-07-15-htb-business-ctf/index.md)
