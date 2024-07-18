@@ -8,7 +8,7 @@ Contact: [pierre.gaulon.cyber@gmail.com](mailto:pierre.gaulon.cyber@gmail.com) (
 
  - [Linkedin](https://www.linkedin.com/public-profile/in/pierre-gaulon-45b97366/)
  - [Github](https://github.com/pgaulon)
- - [OSCP](https://www.credly.com/badges/deba77ad-b482-43d4-ad27-516b8a66dd94/public_url), [OSWE](https://www.credly.com/badges/e1e4e233-ba96-40db-8b86-5cb985b1d43d/public_url), [AWS Certified Security – Specialty](https://www.credly.com/badges/c5075d4e-8026-485c-aaf0-f512624b237b/public_url), [AWS Certified Database – Specialty](https://www.credly.com/badges/3f8c37a9-1bdc-4836-bde0-2098ea476d9d/public_url)
+ - [OSCP](https://www.credly.com/badges/deba77ad-b482-43d4-ad27-516b8a66dd94/public_url), [OSWE](https://www.credly.com/badges/e1e4e233-ba96-40db-8b86-5cb985b1d43d/public_url), [AWS Certified Security – Specialty (expired)](https://www.credly.com/badges/c5075d4e-8026-485c-aaf0-f512624b237b/public_url), [AWS Certified Security – Specialty](https://www.credly.com/badges/c63b5e57-ce18-40af-9630-04baaa2be977/public_url), [AWS Certified Database – Specialty](https://www.credly.com/badges/3f8c37a9-1bdc-4836-bde0-2098ea476d9d/public_url)
  - [Hackthebox](https://www.hackthebox.eu/profile/101496), [CTF](https://twitter.com/AsrcSecurity/status/1156840592728457216)
 
 # Blog
