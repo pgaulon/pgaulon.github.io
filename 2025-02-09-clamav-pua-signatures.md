@@ -188,6 +188,89 @@ Start Date: 2025:02:09 14:11:43
 End Date:   2025:02:09 14:12:03
 ```
 
+---
+
+A similar result also be done in Java with [OpenPDF](https://github.com/LibrePDF/OpenPDF/tree/master)
+
+```bash
+$ git clone https://github.com/LibrePDF/OpenPDF.git
+$ mvn -q compile
+$ emacs -nw ./openpdf/src/test/java/org/librepdf/openpdf/independent/NumberOfPagesTest.java
+$ mvn test -q -pl openpdf -Dtest=NumberOfPagesTest
+```
+
+The content of `NumberOfPagesTest.java` is the following:
+```java
+package org.librepdf.openpdf.independent;
+
+import com.lowagie.text.Document;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfWriter;
+import java.io.IOException;
+import com.lowagie.text.pdf.PdfAction;
+import java.io.FileOutputStream;
+import org.junit.jupiter.api.Test;
+
+public class NumberOfPagesTest {
+    @Test
+    void whenWritingHelloWorld_thenOnlyOnePageShouldBeCreated() throws IOException {
+        Document document = new Document();
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("Annotations.pdf"));
+        writer.setPdfVersion(PdfWriter.VERSION_1_6);
+        writer.setOpenAction(PdfAction.javaScript("app.alert(\"Hello\");", writer));
+        document.open();
+        document.add(new Paragraph("Hello World"));
+        document.close();
+    }
+}
+```
+
+And the resulting file
+```bash
+$ cat ./openpdf/Annotations.pdf
+%PDF-1.6
+%����
+2 0 obj
+<</Filter/FlateDecode/Length 64>>stream
+x�+�r
+�26S�00I�2P�5�1��
+
+                 �BҸ4<Rsr���rR4C��J
+                                   @
+\C����
+endstream
+endobj
+4 0 obj
+<</Contents 2 0 R/Type/Page/Resources<</Font<</F1 1 0 R>>>>/Parent 3 0 R/MediaBox[0 0 595 842]>>
+endobj
+1 0 obj
+<</Subtype/Type1/Type/Font/BaseFont/Helvetica/Encoding/WinAnsiEncoding>>
+endobj
+3 0 obj
+<</Kids[4 0 R]/Type/Pages/Count 1>>
+endobj
+5 0 obj
+<</OpenAction<</S/JavaScript/JS(app.alert\("Hello"\);)>>/Type/Catalog/Pages 3 0 R>>
+endobj
+6 0 obj
+<</CreationDate(D:20250209171824+08'00')/Producer(OpenPDF 2.0.4-SNAPSHOT)>>
+endobj
+xref
+0 7
+0000000000 65535 f
+0000000257 00000 n
+0000000015 00000 n
+0000000345 00000 n
+0000000145 00000 n
+0000000396 00000 n
+0000000495 00000 n
+trailer
+<</Info 6 0 R/ID [<8749eff95f7932a96f47ec00fffce9e4><8749eff95f7932a96f47ec00fffce9e4>]/Root 5 0 R/Size 7>>
+startxref
+586
+%%EOF
+```
+
 ## Creating my own PUA PDF rule
 
 What if we still want to alert on such PDF, whether the finding is legitimate or not? We would need to come up with a rule, that allows more that 100 characters between `/OpenAction` and `/JavaScript`.
