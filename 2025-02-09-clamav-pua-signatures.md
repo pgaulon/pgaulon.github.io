@@ -74,7 +74,7 @@ DECODED SIGNATURE:
 %PDF-{WILDCARD_ANY_STRING}obj{WILDCARD_ANY_STRING(LENGTH<=2)}<<{WILDCARD_ANY_STRING(LENGTH<=100)}/OpenAction{WILDCARD_ANY_STRING(LENGTH<=100)}/JS
 ```
 
-Right, the main pattern is to detect the PDF magic bytes `%PDF-`, with any version number, followed by an `obj`. After that, the pattern watches for `/OpenAction` and `/JavaScript` (or `/JS`). The important bit is the `{WILDCARD_ANY_STRING(LENGTH<=100)}` between the 2 of them. That means if there's more that 100 characters in the PDF file between the `/OpenAction` and the `/JavaScript`, the file is accepted as clean of PUA.
+Right, the main pattern is to detect the PDF magic bytes `%PDF-`, with any version number, followed by an `obj`. After that, the pattern watches for `/OpenAction` and `/JavaScript` (or `/JS`). The important bit is the `{WILDCARD_ANY_STRING(LENGTH<=100)}` between the 2 of them. That means if there's more than 100 characters in the PDF file between the `/OpenAction` and the `/JavaScript`, the file is accepted as clean of PUA.
 
 What if we generate a file that is still parsed by PDF readers, but has `/OpenAction` and `/JavaScript` (again, or `/JS`) further away than 100 characters?
 
@@ -82,7 +82,7 @@ What if we generate a file that is still parsed by PDF readers, but has `/OpenAc
 
 In order to reproduce the example, we need:
  - a valid PDF
- - using `/OpenAction` and more that 100 characters before the 1st occurence of `/JavaScript`
+ - using `/OpenAction` and more than 100 characters before the 1st occurence of `/JavaScript`
 
 Using [pypdf](https://pypdf.readthedocs.io/en/stable/modules/PdfWriter.html), the following program generates such file
 
@@ -190,7 +190,7 @@ End Date:   2025:02:09 14:12:03
 
 ---
 
-A similar result also be done in Java with [OpenPDF](https://github.com/LibrePDF/OpenPDF/tree/master)
+A similar result can also be achieved in Java with [OpenPDF](https://github.com/LibrePDF/OpenPDF/tree/master)
 
 ```bash
 $ git clone https://github.com/LibrePDF/OpenPDF.git
@@ -273,7 +273,7 @@ startxref
 
 ## Creating my own PUA PDF rule
 
-What if we still want to alert on such PDF, whether the finding is legitimate or not? We would need to come up with a rule, that allows more that 100 characters between `/OpenAction` and `/JavaScript`.
+What if we still want to alert on such PDF, whether the finding is legitimate or not? We would need to come up with a rule, that allows more than 100 characters between `/OpenAction` and `/JavaScript`.
 Taking back the rules given by ClamAV `daily.ndu`, extracted from `daily.nvd` the change is quite simple:
 
 ```bash
