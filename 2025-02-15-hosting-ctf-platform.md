@@ -42,7 +42,7 @@ aws route53 change-resource-record-sets --hosted-zone-id ABCDEF --change-batch '
 
 ## Docker build
 
-Each challenge was created from 1 repo, in a separate branch. From each branch, a docker image is built and pushed to and ECR repo, keeping the name mapping between repo branches and docker tags
+Each challenge was created from 1 repo, in a separate branch. From each branch, a docker image is built and pushed to an ECR repo, keeping the name mapping between repo branches and docker tags
 
 ```bash
 $ tree -L2
