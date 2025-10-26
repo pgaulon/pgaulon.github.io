@@ -467,3 +467,110 @@ export pass='privatekeypasswordhere'
 $ source pass.sh
 $ sqlcmd -N -C -S tcp:main.example.com,1433 -U sa -d master -Q "create certificate encryption_certificate FROM BINARY = 0x$cert_bin with private key ( binary = 0x$key_bin , decryption by password = '$pass' )"
 ```
+
+## Check if a backup is encrypted
+
+The [list of parameters](https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-headeronly-transact-sql?view=sql-server-ver17) of `RESTORE HEADERONLY` needs to be used to build a temporary table.
+
+```
+CREATE TABLE #BackupHeader (
+BackupName                   NVARCHAR(128),
+    BackupDescription            NVARCHAR(255),
+    BackupType                   SMALLINT,
+    ExpirationDate               DATETIME,
+    Compressed                   BIT,
+    Position                     SMALLINT,
+    DeviceType                   TINYINT,
+    UserName                     NVARCHAR(128),
+    ServerName                   NVARCHAR(128),
+    DatabaseName                 NVARCHAR(128),
+    DatabaseVersion              INT,
+    DatabaseCreationDate         DATETIME,
+    BackupSize                   NUMERIC(20, 0),
+    -- Log Sequence Number (LSN) Columns
+    FirstLSN                     NUMERIC(25, 0),
+    LastLSN                      NUMERIC(25, 0),
+    CheckpointLSN                NUMERIC(25, 0),
+    DatabaseBackupLSN            NUMERIC(25, 0),
+    BackupStartDate              DATETIME,
+    BackupFinishDate             DATETIME,
+
+    -- Server/Compatibility Columns
+    SortOrder                    SMALLINT,
+    CodePage                     SMALLINT,
+    UnicodeLocaleId              INT,
+    UnicodeComparisonStyle       INT,
+    CompatibilityLevel           TINYINT,
+    SoftwareVendorId             INT,
+    SoftwareVersionMajor         INT,
+    SoftwareVersionMinor         INT,
+    SoftwareVersionBuild         INT,
+    MachineName                  NVARCHAR(128),
+    Flags                        INT,
+
+    -- GUID and Recovery Columns
+    BindingID                    UNIQUEIDENTIFIER,
+    RecoveryForkID               UNIQUEIDENTIFIER,
+	Collation NVARCHAR(128),
+	FamilyGUID                   UNIQUEIDENTIFIER,
+    HasBulkLoggedData            BIT,
+    IsSnapshot                   BIT,
+    IsReadOnly                   BIT,
+    IsSingleUser                 BIT,
+    HasBackupChecksums           BIT,
+    IsDamaged                    BIT,
+	BeginsLogChain BIT,
+    HasIncompleteMetadata        BIT,
+    IsForceOffline               BIT,
+    IsCopyOnly                   BIT,
+    FirstRecoveryForkID          UNIQUEIDENTIFIER,
+	ForkPointLSN numeric(25,0),
+	RecoveryModel nvarchar(60),
+	DifferentialBaseLSN numeric(25,0),
+    DifferentialBaseGUID         UNIQUEIDENTIFIER,
+	BackupTypeDescription nvarchar(60),
+	BackupSetGUID uniqueidentifier,
+    CompressedBackupSize         NUMERIC(20, 0),
+	    Containment                  SMALLINT,
+    KeyAlgorithm                 NVARCHAR(128),
+    EncryptorThumbprint          VARBINARY(20),
+    EncryptorType                NVARCHAR(128),
+    CompressionAlgorithm         NVARCHAR(60),
+	LastValidRestoreTime DATETIME,
+	TimeZone nvarchar(32)
+);
+INSERT INTO #BackupHeader EXEC('RESTORE HEADERONLY FROM DISK = N''C:\Backup\somebackup.bak'';');
+SELECT 
+    BackupName,
+    KeyAlgorithm,
+    EncryptorThumbprint,
+    EncryptorType 
+FROM #BackupHeader;
+DROP TABLE #BackupHeader;
+```
+
+## Check if TDE is used
+
+```
+SELECT
+    db.name,
+    db.is_encrypted,
+    dm.encryption_state,
+    dm.percent_complete,
+    dm.key_algorithm,
+    dm.key_length
+FROM
+    sys.databases db
+    LEFT OUTER JOIN sys.dm_database_encryption_keys dm
+        ON db.database_id = dm.database_id;
+```
+
+## Check encryption keys
+
+```
+select name, pvt_key_encryption_type_desc as description, issuer_name, subject, start_date as create_date, expiry_date, key_length from sys.certificates where subject not like '%Signing%' and subject not like '%Authenticator%'
+union all
+select name, algorithm_desc as descrption, NULL as issuer_name, NULL as subject, create_date, NULL as expirty_date, key_length from  sys.symmetric_keys;
+
+select name, pvt_key_encryption_type_desc, issuer_name, subject, start_date, expiry_date, key_length from sys.certificates where name not like '##MS_%' and issuer_name not like 'Backup%' and expiry_date > GETDATE();
+```
