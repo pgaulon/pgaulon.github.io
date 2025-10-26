@@ -13,6 +13,8 @@ Contact: [pierre.gaulon.cyber@gmail.com](mailto:pierre.gaulon.cyber@gmail.com) (
 
 # Blog
 
+ - 2025-10-26 [Bundle SSLyze in a single exe with PyInstaller](./2025-10-26-using-pyinstaller-with-sslyze.md)
+ - 2025-05-01 [Powershell notes](./2025-05-01-powershell-notes.md)
  - 2025-02-15 [Hosting a CTF platform](./2025-02-15-hosting-ctf-platform.md)
  - 2025-02-09 [ClamAV PUA PDF signatures](./2025-02-09-clamav-pua-signatures.md)
  - 2024-11-20 [Wiz Singapore CTF 2024](./2024-11-20-wiz-aws-ctf/index.md)
