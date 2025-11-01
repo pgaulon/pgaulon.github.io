@@ -10,7 +10,7 @@ Instead, [sslyze](https://github.com/nabla-c0d3/sslyze) will be used.
 
 # Requirements
 
-This setup starts with a Windows machine that is accessible through OpenSSH. Powershell is setup as preferred shell.
+This setup starts with a Windows machine that is accessible through [OpenSSH](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell&pivots=windows-11). Powershell is setup as preferred shell.
 
 ```
 Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
@@ -23,7 +23,7 @@ if (!(Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyCon
 New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -PropertyType String -Force
 ```
 
-It also has Choco installed, along with psexe and git
+It also has [Chocolatey](https://chocolatey.org/install#individual) installed, along with [PsExec](https://learn.microsoft.com/en-us/sysinternals/downloads/psexec) and [git](https://git-scm.com/install/windows)
 ```
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 choco install git --params "/GitAndUnixToolsOnPath"
@@ -31,7 +31,7 @@ setx PATH "%PATH%;C:\Program Files\Git\bin;C:\Program Files\Git\cmd"
 choco install psexec
 ```
 
-UV is also installed, with Python 3.12
+[UV](https://docs.astral.sh/uv/guides/install-python/) is also installed, with Python 3.12
 ```
 irm https://astral.sh/uv/install.ps1 | iex
 uv python install 3.12
@@ -39,7 +39,7 @@ uv python install 3.12
 
 # Setup
 
-The sslyze repo is cloned locally, and a virtual env is created for the dependencies and [pyinstaller](https://pyinstaller.org/en/stable/installation.html)
+The sslyze repo is cloned locally, and a virtual env is created for the dependencies and [PyInstaller](https://pyinstaller.org/en/stable/installation.html)
 ```
 git clone https://github.com/nabla-c0d3/sslyze.git
 cd sslyze
@@ -83,9 +83,3 @@ The result looks like this
         * ciphers: Cipher suites {'TLS_RSA_WITH_AES_256_CBC_SHA256', 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384', 'TLS_RSA_WITH_AES_256_CBC_SHA', 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256', 'TLS_RSA_WITH_AES_128_CBC_SHA256', 'TLS_RSA_WITH_AES_256_GCM_SHA384', 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA', 'TLS_RSA_WITH_AES_128_GCM_SHA256', 'TLS_RSA_WITH_AES_128_CBC_SHA', 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA'} are supported, but should be rejected.
         * tls_vulnerability_fallback_scsv: Server is vulnerable to TLS downgrade attacks because it does not support the TLS_FALLBACK_SCSV mechanism.
 ```
-
-# References
-- Install [OpenSSH on Windows](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell&pivots=windows-11)
-- Install [Choco](https://chocolatey.org/install#individual)
-- Install [uv](https://docs.astral.sh/uv/getting-started/installation/) and [install Python](https://docs.astral.sh/uv/guides/install-python/)
-- [PyInstaller documentation](https://pyinstaller.org/en/stable/usage.html)
