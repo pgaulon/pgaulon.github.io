@@ -13,7 +13,7 @@ Contact: [pierre.gaulon.cyber@gmail.com](mailto:pierre.gaulon.cyber@gmail.com) (
 
 # Blog
 
- - 2026-05-20-htb-business-ctf [HTB Business CTF notes](./2026-05-20-htb-business-ctf/index.md)
+ - 2026-05-20 [HTB Business CTF notes](./2026-05-20-htb-business-ctf/index.md)
  - 2025-10-26 [Bundle SSLyze in a single exe with PyInstaller](./2025-10-26-using-pyinstaller-with-sslyze.md)
  - 2025-05-01 [Powershell notes](./2025-05-01-powershell-notes.md)
  - 2025-02-15 [Hosting a CTF platform](./2025-02-15-hosting-ctf-platform.md)
