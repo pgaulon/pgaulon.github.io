@@ -13,6 +13,7 @@ Contact: [pierre.gaulon.cyber@gmail.com](mailto:pierre.gaulon.cyber@gmail.com) (
 
 # Blog
 
+ - 2026-05-23 [Making AI smarter with a powerful MCP server](./2026-05-23-d-mcp-server.md)
  - 2026-05-20 [HTB Business CTF notes](./2026-05-20-htb-business-ctf/index.md)
  - 2025-10-26 [Bundle SSLyze in a single exe with PyInstaller](./2025-10-26-using-pyinstaller-with-sslyze.md)
  - 2025-05-01 [Powershell notes](./2025-05-01-powershell-notes.md)
