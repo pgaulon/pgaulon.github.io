@@ -165,7 +165,7 @@ del $location
 ```
 
 ```
-PS C:\WINDOWS\system32> (iwr https://api.gaulon.org/checkip).content
+PS C:\WINDOWS\system32> (iwr -UseBasicParsing https://api.gaulon.org/checkip).content
 ```
 
 ```
