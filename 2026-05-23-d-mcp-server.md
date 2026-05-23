@@ -7,7 +7,7 @@ Sometimes, it happens that generative AI can be a little bit off
 # The solution
 
 In order to solve that problem, I created [d-mcp-server](https://github.com/pgaulon/d-mcp-server/tree/main).
-It is using the official (MCP Go SDK)[https://github.com/modelcontextprotocol/go-sdk], and wrapped in Docker.
+It is using the official [MCP Go SDK](https://github.com/modelcontextprotocol/go-sdk), and wrapped in Docker.
 
 ```
 $ docker compose up -d
