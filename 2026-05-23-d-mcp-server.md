@@ -65,7 +65,7 @@ backend d_mcp_server
 To use it, point your client to D MCP Server
 
 ```
-$ claude mcp add -t http d-mcp-server https://mcp.gaulon.org/d-mcp-server/
+$ claude mcp add -t http d-mcp-server https://mcp.gaulon.org/d-check/
 $ claude --allowedTools mcp__d-mcp-server__d_mcp_server -p 'What day of the week has the letter d in its spelling? Use the tool d-mcp-server.'
 All 7 days of the week contain the letter 'd':
 
